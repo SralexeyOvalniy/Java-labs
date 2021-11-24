@@ -25,7 +25,11 @@ public class StringCalculatorShould {
             "'1\n2, 3'; 6",
             "'//;\n1;2'; 3",
             "'//;\n5;4'; 9",
-            "'1001, 2'; 2"
+            "'1001, 2'; 2",
+            "'//[***]\n1***2***3'; 6",
+            "'//[*][%]\n1*2%3' ; 6",
+            "'//[**][%%]\n1**2%%3' ; 6"
+
     }, delimiter = ';')
     void returns_correct_output_with_input(String input, int output) {
         Assertions.assertEquals(output, stringCalculator.Add(input));
@@ -36,6 +40,8 @@ public class StringCalculatorShould {
             stringCalculator.Add("1, -2, -3");
         });
     }
+
+
 
 
 }
