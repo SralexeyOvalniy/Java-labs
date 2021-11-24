@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class StringCalculator {
+    private static int calledCount  = 0;
 
     public int Add(String input) {
+        calledCount++;
         if(input.equals("")) {
             return 0;
         } else {
@@ -20,6 +22,7 @@ public class StringCalculator {
 
             String[] numList = SplitUndefinedNumbers(input, delimeter);
             checkForNegativeNumbers(numList);
+            System.out.println(calledCount);
             return sum(numList);
         }
     }
@@ -35,7 +38,9 @@ public class StringCalculator {
         for (String s : numbers) {
             //int number = Integer.parseInt(s.replaceAll("[^0-9]", ""));
             int number = Integer.parseInt(s.trim());
-            sum += number;
+            if(number <= 1000) {
+                sum += number;
+            }
         }
         return sum;
     }
@@ -50,6 +55,10 @@ public class StringCalculator {
         if (!negatives.isEmpty()) {
             throw new IllegalArgumentException("Negatives not allowed" + negatives);
         }
+    }
+
+    public static int getCalledCount() {
+        return calledCount;
     }
 
 }
