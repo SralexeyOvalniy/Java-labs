@@ -30,7 +30,11 @@ public class StringCalculator {
         int sum = 0;
 
         for (String s : numbers) {
-            int number = Integer.parseInt(s.replaceAll("[^0-9]", ""));
+            //int number = Integer.parseInt(s.replaceAll("[^0-9]", ""));
+            int number = Integer.parseInt(s.trim());
+            if (number < 0) {
+                throw new IllegalArgumentException("Negatives not allowed! ");
+            }
             sum += number;
         }
         return sum;

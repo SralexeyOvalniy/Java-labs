@@ -2,6 +2,7 @@ package com.codurance;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -27,6 +28,12 @@ public class StringCalculatorShould {
     }, delimiter = ';')
     void returns_correct_output_with_input(String input, int output) {
         Assertions.assertEquals(output, stringCalculator.Add(input));
+    }
+    @Test
+    void throws_exception_for_input_less_than_0() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            stringCalculator.Add("1, -2, -3");
+        });
     }
 
 
