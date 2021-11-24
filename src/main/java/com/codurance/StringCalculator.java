@@ -1,5 +1,7 @@
 package com.codurance;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class StringCalculator {
@@ -17,6 +19,7 @@ public class StringCalculator {
             }
 
             String[] numList = SplitUndefinedNumbers(input, delimeter);
+            checkForNegativeNumbers(numList);
             return sum(numList);
         }
     }
@@ -32,12 +35,21 @@ public class StringCalculator {
         for (String s : numbers) {
             //int number = Integer.parseInt(s.replaceAll("[^0-9]", ""));
             int number = Integer.parseInt(s.trim());
-            if (number < 0) {
-                throw new IllegalArgumentException("Negatives not allowed! ");
-            }
             sum += number;
         }
         return sum;
+    }
+
+    private static void checkForNegativeNumbers(String[] numbers) {
+        List<String> negatives = new ArrayList<>();
+        for (String number : numbers) {
+            if (number.contains("-")) {
+                negatives.add(number);
+            }
+        }
+        if (!negatives.isEmpty()) {
+            throw new IllegalArgumentException("Negatives not allowed" + negatives);
+        }
     }
 
 }
