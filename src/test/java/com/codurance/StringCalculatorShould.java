@@ -22,10 +22,12 @@ public class StringCalculatorShould {
             "1, 2; 3",
             "1, 2, 3, 4, 5, 6, 7, 8, 9; 45",
             "'1\n2, 3'; 6",
-            "'1,\n2, 3'; 6"
+            "'//;\n1;2'; 3",
+            "'//;\n5;4'; 9"
     }, delimiter = ';')
     void returns_correct_output_with_input(String input, int output) {
         Assertions.assertEquals(output, stringCalculator.Add(input));
     }
+
 
 }
